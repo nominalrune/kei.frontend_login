@@ -1,26 +1,24 @@
-import { useState } from 'react'
+import { useState } from 'react';
 import {
   BrowserRouter,
   Routes,
   Route,
 } from "react-router-dom";
-import logo from './logo.svg'
-import './App.css'
-import {Header} from './components/Header';
+import './App.css';
+import { Base } from './components/Base';
+import { Login } from './components/Login';
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  
   return (
     <BrowserRouter>
-     <Routes>
-      <Route path="/" element={<Header />}>
-        <Route path="login" element={<Expenses />} />
-        <Route path="invoices" element={<Invoices />} />
-      </Route>
-    </Routes>
+      <Routes>
+        <Route path="/" element={<Base />}>
+          <Route path="login" element={<Login />} />
+        </Route>
+      </Routes>
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;
