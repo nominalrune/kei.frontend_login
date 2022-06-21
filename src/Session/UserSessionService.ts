@@ -1,6 +1,6 @@
-import { login } from "User/Session/login";
-import { logout } from "User/Session/logout";
-import { register } from "User/Session/register";
+import { login } from "Session/login";
+import { logout } from "Session/logout";
+import { register } from "Session/register";
 import { createUserSession, getUser, requireUserId } from './session';
 export class UserSessionService {
 	static login=login;

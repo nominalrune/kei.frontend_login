@@ -17,6 +17,7 @@
     "jsx": "react-jsx",
     "paths": {
       "User":["./src/User"],
+      "Session":["./src/Session"],
       "Post":["./src/Post"]
     }
   },
