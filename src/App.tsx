@@ -15,13 +15,15 @@ import { Login } from './components/Login';
 const queryClient = new QueryClient();
 
 function App() {
-  document.domain=document.domain;
+  const [user,setUser]=useState<{id:number,name:string,email:string}|null>(null)
+  
+  
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Base />}>
-            <Route path="login" element={<Login />} />
+          <Route path="/" element={<Base user={user} />}>
+            <Route path="login" element={<Login set={setUser} />} />
           </Route>
         </Routes>
       </BrowserRouter>

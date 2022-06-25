@@ -1,22 +1,17 @@
-import { FC, useState, useEffect, useReducer, useRef, ChangeEvent } from 'react';
+import { FC, useState, ChangeEvent } from 'react';
 import { LoginProp } from './propType';
+
+import { useNavigate } from "react-router-dom";
 
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
-
 import Stack from '@mui/material/Stack';
-const RedirectAddrInput = () => (
-	<input
-		type="hidden"
-		name="redirectTo"
-		value={new URL(window.location.href).searchParams.get("redirectTo") || ""}
-	/>
-);
+
 
 type InputParam = {
-	value:string
-	handleChange?:(e:ChangeEvent<HTMLInputElement>)=>void,
+	value: string;
+	handleChange?: (e: ChangeEvent<HTMLInputElement>) => void,
 	placeholder?: string,
 	errorMsg?: string;
 };
@@ -57,34 +52,42 @@ const PasswordInput = (p: Omit<InputParam, "placeholder">) => {
 	);
 };
 export const Login: FC<LoginProp> = (props) => {
-	const { children, ...attr } = props;
-	const [values,setValues]=useState({email:"",password:""});
-	const handleChange=(key_label:string)=>(e:ChangeEvent<HTMLInputElement>)=>{
-		setValues({...values,[key_label]:e.target.value});
+	const { set, children, ...attr } = props;
+	const [values, setValues] = useState({ email: "", password: "" });
+	const handleChange = (key_label: string) => (e: ChangeEvent<HTMLInputElement>) => {
+		setValues({ ...values, [key_label]: e.target.value });
 	};
-	const backendUrl="http://localhost:7780";
-	async function letsLogin(){
-		const res= await fetch(`${backendUrl}/login?email=${values.email}&password=${values.password}`,{
-			method:"POST",
-			mode:'no-cors',
-			headers:new Headers({
+
+	const navigate = useNavigate();
+	const backendUrl = "http://localhost:7780";
+	async function letsLogin() {
+		fetch(`${backendUrl}/login?email=${values.email}&password=${values.password}`, {
+			method: "POST",
+			mode: 'cors',
+			headers: new Headers({
 				"Access-Control-Allow-Origin": backendUrl,
 				"Cross-Origin-Resource-Policy": "cross-origin",
-				"Content-Security-Policy":"cross-origin"
+				"Content-Security-Policy": "cross-origin",
+				'Accept': 'application/json',
 			}),
-			credentials:"include"
-		}).then((res)=>{console.log(res)})
+			referrerPolicy: 'no-referrer',
+			credentials: "include"
+		})
+		.then(res =>res.json()).then((user)=> {
+			console.log({user});
+			set(user);
+			navigate("/", { replace: false });
+		});
+
 	}
 
 	return (
-			<Stack spacing={4} alignItems="center" aria-label='login'>
-				<RedirectAddrInput />
-
-				<EmailInput value={values.email} handleChange={handleChange("email")} />
-				<PasswordInput value={values.password} handleChange={handleChange("password")}/>
-				<Button endIcon={<SendIcon/>} onClick={letsLogin}>
-					login
-				</Button>
-			</Stack>
+		<Stack component={"form"} spacing={4} alignItems="center" aria-label='login'>
+			<EmailInput value={values.email} handleChange={handleChange("email")} />
+			<PasswordInput value={values.password} handleChange={handleChange("password")} />
+			<Button endIcon={<SendIcon />} onClick={letsLogin}>
+				login
+			</Button>
+		</Stack>
 	);
 };
