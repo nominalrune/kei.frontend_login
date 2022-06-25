@@ -1,9 +1,5 @@
-import { FC, useState, useEffect, useReducer, useRef } from 'react';
+import { FC, useState, useEffect, useReducer, useRef, ChangeEvent } from 'react';
 import { LoginProp } from './propType';
-import {
-	UserSessionService as USS,
-	UserController as UC
-} from "User";
 
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -19,17 +15,19 @@ const RedirectAddrInput = () => (
 );
 
 type InputParam = {
-	defaultVal?: string,
+	value:string
+	handleChange?:(e:ChangeEvent<HTMLInputElement>)=>void,
 	placeholder?: string,
 	errorMsg?: string;
 };
 
 const EmailInput = (p: InputParam) => {
-	const { defaultVal, placeholder, errorMsg } = p;
+	const { value, handleChange, placeholder, errorMsg } = p;
 	return (
 		<TextField
 			label="Email"
-			defaultValue={defaultVal}
+			defaultValue={value}
+			onChange={handleChange}
 			name="email"
 			type="email"
 			placeholder={placeholder}
@@ -42,11 +40,12 @@ const EmailInput = (p: InputParam) => {
 	);
 };
 const PasswordInput = (p: Omit<InputParam, "placeholder">) => {
-	const { defaultVal, errorMsg } = p;
+	const { value, handleChange, errorMsg } = p;
 	return (
 		<TextField
 			label="Password"
-			defaultValue={defaultVal}
+			defaultValue={value}
+			onChange={handleChange}
 			name="password"
 			type="password"
 			helperText={errorMsg}
@@ -59,14 +58,31 @@ const PasswordInput = (p: Omit<InputParam, "placeholder">) => {
 };
 export const Login: FC<LoginProp> = (props) => {
 	const { children, ...attr } = props;
+	const [values,setValues]=useState({email:"",password:""});
+	const handleChange=(key_label:string)=>(e:ChangeEvent<HTMLInputElement>)=>{
+		setValues({...values,[key_label]:e.target.value});
+	};
+	const backendUrl="http://localhost:7780";
+	async function letsLogin(){
+		const res= await fetch(`${backendUrl}/login?email=${values.email}&password=${values.password}`,{
+			method:"POST",
+			mode:'no-cors',
+			headers:new Headers({
+				"Access-Control-Allow-Origin": backendUrl,
+				"Cross-Origin-Resource-Policy": "cross-origin",
+				"Content-Security-Policy":"cross-origin"
+			}),
+			credentials:"include"
+		}).then((res)=>{console.log(res)})
+	}
 
 	return (
 			<Stack spacing={4} alignItems="center" aria-label='login'>
 				<RedirectAddrInput />
 
-				<EmailInput />
-				<PasswordInput />
-				<Button endIcon={<SendIcon/>}>
+				<EmailInput value={values.email} handleChange={handleChange("email")} />
+				<PasswordInput value={values.password} handleChange={handleChange("password")}/>
+				<Button endIcon={<SendIcon/>} onClick={letsLogin}>
 					login
 				</Button>
 			</Stack>

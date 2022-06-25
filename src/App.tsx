@@ -15,7 +15,7 @@ import { Login } from './components/Login';
 const queryClient = new QueryClient();
 
 function App() {
-
+  document.domain=document.domain;
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
