@@ -30,16 +30,14 @@ export const AccountMenu: FC<AccountMenuProp> = (props) => {
 						</button>
 					</form>
 				</MenuItem>
-			) : (
-				<>
+			) : ([
+					<MenuItem>
+						<Link to="/login">Login</Link>
+					</MenuItem>,
 					<MenuItem>
 						<Link to="/login">Login</Link>
 					</MenuItem>
-					<MenuItem>
-						<Link to="/login">Login</Link>
-					</MenuItem>
-				</>
-			)}
+			])}
 
 
 		</Menu>
