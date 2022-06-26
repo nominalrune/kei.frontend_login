@@ -12,6 +12,25 @@ type InputParam = {
 	errorMsg?: string;
 };
 
+export const NameInput = (p: InputParam) => {
+	const { value, handleChange, placeholder, errorMsg } = p;
+	return (
+		<TextField
+			label="Name"
+			defaultValue={value}
+			onChange={handleChange}
+			name="name"
+			type="name"
+			placeholder={placeholder}
+			helperText={errorMsg}
+			aria-invalid={
+				Boolean(errorMsg) ||
+				undefined
+			}
+		/>
+	);
+};
+
 export const EmailInput = (p: InputParam) => {
 	const { value, handleChange, placeholder, errorMsg } = p;
 	return (

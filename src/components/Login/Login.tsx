@@ -1,6 +1,8 @@
 import { FC, useState, ChangeEvent } from 'react';
 import { LoginProp } from './propType';
 
+import { useNavigate } from "react-router-dom";
+
 import {login} from 'services/session/login';
 
 import Stack from '@mui/material/Stack';
@@ -16,8 +18,10 @@ export const Login: FC<LoginProp> = (props) => {
 	const handleChange = (key_label: string) => (e: ChangeEvent<HTMLInputElement>) => {
 		setValues({ ...values, [key_label]: e.target.value });
 	};
-	function doLogin(e:React.MouseEvent<T, MouseEvent>){
-		login({email:values.email,password:values.password},set,"/")
+	
+	const navi=useNavigate()
+	function doLogin(e:React.MouseEvent){
+		login({email:values.email,password:values.password}, set,navi,"/")
 	}
 	
 	return (
