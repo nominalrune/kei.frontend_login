@@ -24,22 +24,18 @@ export const AccountMenu: FC<AccountMenuProp> = (props) => {
 		>
 			{user ? (
 				<MenuItem>
-					<form action="/logout" method="post">
-						<button type="submit" className="button">
-							Logout
-						</button>
-					</form>
+					<Link to="/logout">
+						Logout
+					</Link>
 				</MenuItem>
 			) : ([
 					<MenuItem key={1}>
 						<Link to="/login">Login</Link>
 					</MenuItem>,
 					<MenuItem key={2}>
-						<Link to="/login">Login</Link>
+						<Link to="/register">register</Link>
 					</MenuItem>
 			])}
-
-
 		</Menu>
 	);
 };

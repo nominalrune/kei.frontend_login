@@ -10,20 +10,16 @@ import Button from '@mui/material/Button'
 import SendIcon from '@mui/icons-material/Send';
 import {PasswordInput, EmailInput} from "components/common/form";
 
-
-
 export const Login: FC<LoginProp> = (props) => {
 	const { set, children, ...attr } = props;
 	const [values, setValues] = useState({ email: "", password: "" });
 	const handleChange = (key_label: string) => (e: ChangeEvent<HTMLInputElement>) => {
 		setValues({ ...values, [key_label]: e.target.value });
 	};
-	
-	const navi=useNavigate()
+	const navigator=useNavigate()
 	function doLogin(e:React.MouseEvent){
-		login({email:values.email,password:values.password}, set,navi,"/")
+		login({email:values.email,password:values.password}, set,navigator,"/")
 	}
-	
 	return (
 		<Stack component={"form"} spacing={4} alignItems="center" aria-label='login'>
 			<EmailInput value={values.email} handleChange={handleChange("email")} />

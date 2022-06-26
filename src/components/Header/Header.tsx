@@ -12,10 +12,12 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 
-import {AccountMenu}from "./AccountMenu";
+import {AccountMenu} from "./AccountMenu";
 
 export const Header: FC<HeaderProp> = (props) => {
-	const styles = useStyles(props?.style);
+	const {user, style}=props;
+	const styles = useStyles(style);
+	
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 	const toggle=()=> setAnchorEl(null);
 	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
