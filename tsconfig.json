@@ -15,10 +15,9 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "baseUrl": ".",
     "paths": {
-      "User":["./src/User"],
-      "Session":["./src/Session"],
-      "Post":["./src/Post"]
+      "*":["./src/*"],
     }
   },
   "include": ["src"],
