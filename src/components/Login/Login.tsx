@@ -59,9 +59,9 @@ export const Login: FC<LoginProp> = (props) => {
 	};
 
 	const navigate = useNavigate();
-	const backendUrl = "http://localhost:7780";
+	const backendUrl = "localhost:7780"; // `http://`は必要な時につける
 	async function letsLogin() {
-		fetch(`${backendUrl}/login?email=${values.email}&password=${values.password}`, {
+		fetch(`http://${backendUrl}/login?email=${values.email}&password=${values.password}`, {
 			method: "POST",
 			mode: 'cors',
 			headers: new Headers({
