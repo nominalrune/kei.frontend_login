@@ -14,7 +14,8 @@ export async function login(userInput:{email:string,password:string},userSetter:
 			referrerPolicy: 'no-referrer',
 			credentials: "include"
 		})
-		.then(res =>res.json()).then((user)=> {
+		.then(res =>res.json())
+		.then((user)=> {
 			console.log({user});
 			userSetter(user);
 			navigator(redirectTo);
