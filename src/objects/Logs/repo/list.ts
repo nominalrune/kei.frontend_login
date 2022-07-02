@@ -4,9 +4,10 @@ import { objectToQuery } from 'util/url/objectToQuery';
 import { backendUrl as _backendUrl } from 'config/backend';
 
 export async function list(
+	userId:number,
 	backendUrl = _backendUrl
 ) {
-	const posts = await fetch(`http://${backendUrl}/log`, {
+	const posts = await fetch(`http://${backendUrl}/log?user=${userId}`, {
 		method: "GET",
 		mode: 'cors',
 		headers: new Headers({

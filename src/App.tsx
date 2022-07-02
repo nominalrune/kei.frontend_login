@@ -30,15 +30,8 @@ function App() {
           <Route path="/" element={<Base user={user} />}>
             <Route path="login" element={<Login set={setUser} />} />
             <Route path="register" element={<Register set={setUser} />} />
-            <Route path="log" element={<Outlet />} >
-            <Route path="log/" element={<LogList logs={
-              [
-                {title:"",detail:"",date:new Date(),timeFrom:new Date(),timeTo:new Date(),subject:""},
-                {title:"02",detail:"02",date:new Date(),timeFrom:new Date(),timeTo:new Date(),subject:""}
-              ]
-              } />} />
+            <Route path="log" element={<LogList userId={1} />} />
             <Route path="new" element={<LogNew user={user} />} />
-            </Route>
           </Route>
         </Routes>
       </BrowserRouter>

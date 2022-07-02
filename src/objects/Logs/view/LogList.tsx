@@ -1,22 +1,27 @@
-import type {ILogData}from "../ILogData";
+import type { ILogData } from "../ILogData";
+import { list } from "objects/Logs/repo/list";
+
+import { useQuery } from 'react-query';
+
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-type p={logs:ILogData[]}
-export function LogList({logs}:p) {
+type p = { userId: number };
+export function LogList({ userId }: p) {
+	const { isLoading, isError, data, error } = useQuery(['logs', userId], () => list(userId));
 	return (
-		<Stack component={"form"} spacing={4} alignItems="center" aria-label='login'>
-		{logs.map((log,i)=>(
-		<Box key={i}>
-			<Typography fontSize={3}>
-				{log.title}
-			</Typography>
-			<p>{log.date.toISOString()}</p>
-			<p>{log.detail}</p>
-			<hr/>
-		</Box>
-		))}
+		<Stack component={"div"} spacing={4} alignItems={"center"} aria-label='login'>
+			{data && data.map((log, i) => (
+				<Box key={i}>
+					<Typography fontSize={3}>
+						{log.title}
+					</Typography>
+					<p>{log.date}</p>
+					<p>{log.detail}</p>
+					<hr />
+				</Box>
+			))}
 		</Stack>
-	)
-	
+	);
+
 }
