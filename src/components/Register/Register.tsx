@@ -1,7 +1,7 @@
 import {FC, useState, ChangeEvent} from 'react';
 import {RegisterProp} from './propType'
 
-import {register} from 'services/session/register';
+import {register} from 'User/query/session/register';
 
 import { useNavigate } from "react-router-dom";
 

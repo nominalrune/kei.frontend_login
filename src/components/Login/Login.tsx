@@ -3,7 +3,7 @@ import { LoginProp } from './propType';
 
 import { useNavigate } from "react-router-dom";
 
-import {login} from 'services/session/login';
+import {login} from 'User/query/session/login';
 
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button'

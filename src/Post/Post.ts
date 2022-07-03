@@ -1,5 +1,15 @@
 import { User } from 'User';
-
+export interface IPostData {
+	id: number;
+	createdAt: Date;
+	updatedAt: Date;
+	title: string;
+	content: string;
+}
+export interface IPostInputData {
+	title: string;
+	content: string;
+}
 export interface IPost {
 	id?: number;
 	createdAt?: Date;
@@ -33,15 +43,15 @@ export class Post implements IPost {
 		this.#authorId = arg.authorId;
 	}
 	get id(): number {
-		if(this.#id===undefined) throw new Error("id is undefined");
+		if (this.#id === undefined) throw new Error("id is undefined");
 		return this.#id;
 	}
 	get createdAt(): Date {
-		if(this.#createdAt===undefined) throw new Error("createdAt is undefined");
+		if (this.#createdAt === undefined) throw new Error("createdAt is undefined");
 		return this.#createdAt;
 	}
 	get updatedAt(): Date {
-		if(this.#updatedAt===undefined) throw new Error("updatedAt is undefined");
+		if (this.#updatedAt === undefined) throw new Error("updatedAt is undefined");
 		return this.#updatedAt;
 	}
 	get title(): string {
