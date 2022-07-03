@@ -13,7 +13,7 @@ export async function get<ResponseData>(url: string) {
  * @param {object} [data] - The data to send to the server.
  * @returns reponce data or error from the server
  */
-export async function get<ResponseData>(url: string, data?: object) {
+export async function post<ResponseData>(url: string, data?: object) {
 	return _fetch<ResponseData>(url, "POST");
 };
 

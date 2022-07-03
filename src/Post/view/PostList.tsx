@@ -9,12 +9,14 @@ import Stack from '@mui/material/Stack';
 type p = { userId: number };
 export function PostList({ userId }: p) {
 	const { isLoading, isError, data, error } = useQuery(['logs', userId], () => list(userId));
-	return (
+	return data
+	? (
 		<Stack component={"div"} spacing={4} alignItems={"center"} aria-label='login'>
-			{data && data.map((post, i) => (
+			{  data.map((post, i) => (
 				<PostCard key={i} post={post}/>
 			))}
 		</Stack>
-	);
+	)
+	: <div>loading...</div>;
 
 }

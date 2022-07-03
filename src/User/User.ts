@@ -1,6 +1,6 @@
 interface IUser {
 	id: number;
-	username: string;
+	name: string;
 	email: string;
 	createdAt: Date;
 	updatedAt: Date;
@@ -9,20 +9,20 @@ interface IUser {
 
 class User implements IUser {
 	#id: number;
-	#username: string;
+	#name: string;
 	#createdAt: Date;
 	#updatedAt: Date;
 	#email: string;
 	#passwordHash?: string;
 	constructor(arg: {
-		username: string,
+		name: string,
 		email: string,
 		id: number;
 		createdAt: Date,
 		updatedAt: Date,
 		passwordHash?: string;
 	}) {
-		this.#username = arg.username;
+		this.#name = arg.name;
 		this.#email = arg.email;
 		this.#id = arg.id;
 		this.#createdAt = arg.createdAt;
@@ -33,8 +33,8 @@ class User implements IUser {
 		if(this.#id===undefined) throw new Error("id is undefined");
 		return this.#id;
 	}
-	get username(): string {
-		return this.#username;
+	get name(): string {
+		return this.#name;
 	}
 	get email(): string {
 		return this.#email;

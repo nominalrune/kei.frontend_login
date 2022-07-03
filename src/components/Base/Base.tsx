@@ -13,10 +13,7 @@ export const Base: FC<BaseProp> = (props) => {
 	// },[user])
 	return (
 		<>
-			<Header />
-			{user&&(
-			<p>Hi! {user.name}.</p>
-			)}
+			<Header user={user} />
 			<Outlet />
 		</>
 	);
