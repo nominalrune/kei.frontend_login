@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import { create } from 'Post/query/create';
+import { useNavigate } from "react-router-dom";
 
 import { TextInput } from 'components/common/input';
 
@@ -10,12 +11,14 @@ import Stack from '@mui/material/Stack';
 
 export function PostNew({ userId }: { userId: number; }) {
 	const [postData, setPostData] = useState({ title: "", content: "" });
+	const navigate=useNavigate();
 	const handleChange = (key_label: string) => (e: any) => {
 		setPostData({ ...postData, [key_label]: e.target.value });
 	};
-	function doCreate() {
+	async function doCreate() {
 		console.table(postData);
-		create(postData, userId);
+		const post = await create(postData, userId);
+		navigate("/post/" + post.id);
 	}
 
 	return (
