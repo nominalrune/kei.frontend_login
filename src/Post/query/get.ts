@@ -8,6 +8,6 @@ export async function get(
 	id: number,
 	backendUrl = _backendUrl
 ) {
-const post = await _get<IPostData>(`http://${backendUrl}/log/${id}`);
+const post = await _get<IPostData>(`http://${backendUrl}/post?id=${id}`);
 	return post;
 }

@@ -8,8 +8,8 @@ export function PostCard({post}:{post:IPostData}){
 	
 	
 	return (
-		<Card>
-			<Typography fontSize={3}>
+		<Card elevation={5} style={{margin:"2rem",padding:"1rem"}}>
+			<Typography fontSize={"2rem"}>
 				{post.title}
 			</Typography>
 			<p>{post.content}</p>
