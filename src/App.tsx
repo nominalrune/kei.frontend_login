@@ -39,7 +39,7 @@ function App() {
             <Route path="post" element={<Outlet />} >
               <Route index element={<PostList userId={user?.id??0} />}/>
               <Route path="new" element={<PostNew userId={user?.id??0}  />} />
-              <Route path=":id" element={<PostDetail userId={user?.id??0}  />} />
+              <Route path=":id" element={<PostDetail />} />
             </Route>
             <Route path="log" element={<LogList userId={1} />} />
             <Route path="new" element={<LogNew user={user} />} />
