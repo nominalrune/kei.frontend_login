@@ -1,5 +1,5 @@
 import type { ILogData } from "../ILogData";
-import { list } from "objects/Logs/repo/list";
+import { list } from "Logs/repo/list";
 
 import { useQuery } from 'react-query';
 
