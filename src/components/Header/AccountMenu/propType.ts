@@ -1,4 +1,4 @@
 import type {IUserData}from "User";
 export type AccountMenuProp =
 	React.HTMLAttributes<HTMLDivElement>
-	& {user?: IUserData, anchorEl:HTMLElement|null, toggle:()=>void};
+	& {user: IUserData|null, anchorEl:HTMLElement|null, toggle:()=>void};

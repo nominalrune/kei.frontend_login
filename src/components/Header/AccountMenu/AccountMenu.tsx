@@ -24,16 +24,21 @@ export const AccountMenu: FC<AccountMenuProp> = (props) => {
 		>
 			{user ? (
 				<MenuItem>
-					<Link to="/logout">
+					[
+						<Link to="/post">
+						Posts
+					</Link>,
+					<Link to="/user/logout">
 						Logout
 					</Link>
+					]
 				</MenuItem>
 			) : ([
 					<MenuItem key={1}>
-						<Link to="/login">Login</Link>
+						<Link to="/user/login">Login</Link>
 					</MenuItem>,
 					<MenuItem key={2}>
-						<Link to="/register">register</Link>
+						<Link to="/user/register">register</Link>
 					</MenuItem>
 			])}
 		</Menu>

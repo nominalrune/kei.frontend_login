@@ -4,7 +4,7 @@ import type {IPostData}from 'Post/Post';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 
-export function PostCard({post:IPostData}){
+export function PostCard({post}:{post:IPostData}){
 	
 	
 	return (

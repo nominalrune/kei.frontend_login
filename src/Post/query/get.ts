@@ -1,4 +1,4 @@
-import { ILogData } from 'Logs/ILogData';
+import { IPostData } from 'Post/Post';
 import { objectToQuery } from 'util/url/objectToQuery';
 
 import {get as _get} from 'util/request';
@@ -8,6 +8,6 @@ export async function get(
 	id: number,
 	backendUrl = _backendUrl
 ) {
-const post = await _get<ILogData>(`http://${backendUrl}/log/${id}`);
+const post = await _get<IPostData>(`http://${backendUrl}/log/${id}`);
 	return post;
 }

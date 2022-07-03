@@ -49,7 +49,7 @@ export const Header: FC<HeaderProp> = (props) => {
 							>
 								<AccountCircle />
 							</IconButton>
-						<AccountMenu anchorEl={anchorEl} toggle={toggle} user={props?.user} />
+						<AccountMenu anchorEl={anchorEl} toggle={toggle} user={user} />
 					</Toolbar>
 				</AppBar>
 			</Box>

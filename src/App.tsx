@@ -32,12 +32,14 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Base user={user} />}>
+          <Route path="user" element={<Outlet />} >
             <Route path="login" element={<Login set={setUser} />} />
             <Route path="register" element={<Register set={setUser} />} />
-            <Route path="post" element={<Register set={setUser} />} >
-              <Route index element={<PostList userId={user.id} />}/>
-              <Route path="new" element={<PostNew userId={user.id}  />} />
-              <Route path=":id" element={<PostDetail userId={user.id} postId={} />} />
+          </Route>
+            <Route path="post" element={<Outlet />} >
+              <Route index element={<PostList userId={user?.id??0} />}/>
+              <Route path="new" element={<PostNew userId={user?.id??0}  />} />
+              <Route path=":id" element={<PostDetail />} />
             </Route>
             <Route path="log" element={<LogList userId={1} />} />
             <Route path="new" element={<LogNew user={user} />} />
