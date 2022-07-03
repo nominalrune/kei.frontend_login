@@ -18,8 +18,8 @@ import { PostList } from 'Post/view/PostList';
 import { PostNew } from 'Post/view/PostNew';
 import { PostDetail } from 'Post/view/PostDetail';
 
-import { LogList } from 'objects/Logs/view/LogList';
-import { LogNew } from 'objects/Logs/view/LogNew';
+import { LogList } from 'Logs/view/LogList';
+import { LogNew } from 'Logs/view/LogNew';
 
 const queryClient = new QueryClient();
 

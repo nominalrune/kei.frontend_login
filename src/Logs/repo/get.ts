@@ -1,4 +1,4 @@
-import { ILogData } from 'objects/Logs/ILogData';
+import { ILogData } from 'Logs/ILogData';
 import { objectToQuery } from 'util/url/objectToQuery';
 
 import { backendUrl as _backendUrl } from 'config/backend';

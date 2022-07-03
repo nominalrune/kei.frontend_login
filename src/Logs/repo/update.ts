@@ -1,13 +1,14 @@
-import { ILogData } from 'objects/Logs/ILogData';
+import { ILogData } from 'Logs/ILogData';
 import { objectToQuery } from 'util/url/objectToQuery';
 
 import { backendUrl as _backendUrl } from 'config/backend';
 
-export async function create(
-	postInput: ILogData,
+export async function update(
+	postInput: ILogData&{id:number},
 	backendUrl = _backendUrl
 ) {
-	const post = await fetch(`http://${backendUrl}/log/new?${objectToQuery(postInput)}`, {
+	const {id,...query}=postInput;
+	const post = await fetch(`http://${backendUrl}/log/${id}/edit?${objectToQuery(query)}`, {
 		method: "POST",
 		mode: 'cors',
 		headers: new Headers({
