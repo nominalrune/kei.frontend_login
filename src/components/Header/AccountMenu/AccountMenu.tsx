@@ -22,22 +22,22 @@ export const AccountMenu: FC<AccountMenuProp> = (props) => {
 			open={!!anchorEl}
 			onClose={toggle}
 		>
-			{user ? (
-				<MenuItem>
-					[
+			{user ? ([
+				<MenuItem key={0}>
 						<Link to="/post">
 						Posts
-					</Link>,
+					</Link>
+				</MenuItem>,
+				<MenuItem key={1}>
 					<Link to="/user/logout">
 						Logout
 					</Link>
-					]
 				</MenuItem>
-			) : ([
-					<MenuItem key={1}>
+			]) : ([
+					<MenuItem key={0}>
 						<Link to="/user/login">Login</Link>
 					</MenuItem>,
-					<MenuItem key={2}>
+					<MenuItem key={1}>
 						<Link to="/user/register">register</Link>
 					</MenuItem>
 			])}

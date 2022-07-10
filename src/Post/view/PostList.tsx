@@ -22,14 +22,14 @@ export function PostList({ userId }: p) {
 		return data
 	? 
 		<>
-		(<Stack key="a" component={"div"} spacing={4} alignItems={"center"} aria-label='login'>
+		<Stack key="a" component={"div"} spacing={4} alignItems={"center"} aria-label='login'>
 			{  data.map((post, i) => (
 				<PostCard key={i} post={post}/>
 			))}
-		</Stack>),
-		(<Fab key="b" color="primary" aria-label="add" onClick={handleClick}>
+		</Stack>
+		<Fab key="b" color="primary" aria-label="add" onClick={handleClick}>
         <AddIcon />
-      </Fab>)
+      </Fab>
 	  </>
 	: <div>loading...</div>;
 }
